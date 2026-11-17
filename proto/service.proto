@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "go-grpc/proto";
+
+service SimpleService {
+  rpc Normal(Request) returns (Response);
+  rpc ServerStream(Request) returns (stream Response);
+  rpc ClientStream(stream Request) returns (Response);
+  rpc BiDirectionalStream(stream Request) returns (stream Response);
+}
+
+message Request {
+  string message = 1;
+  bool error = 2;
+}
+
+message Response {
+  string message = 1;
+}
